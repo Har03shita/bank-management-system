@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: bankapp
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/bankappdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: harshita
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+jwt:
+  secret: jhsy2463yggFTS6IEJDB5629NGFUM39NKjx39dg0h2v5
+  expiration: 3600000
