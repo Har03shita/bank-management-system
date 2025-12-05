@@ -43,8 +43,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
+        // *** CRITICAL CORRECTION ***
+        // For OPTIONS requests (CORS preflight), we must pass the request down the chain
+        // so the CORS filter can add the necessary response headers.
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
+            filterChain.doFilter(request, response); // <--- THIS IS THE FIX
             return;
         }
 
