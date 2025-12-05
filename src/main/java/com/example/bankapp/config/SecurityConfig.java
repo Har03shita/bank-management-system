@@ -29,7 +29,7 @@ public class SecurityConfig {
 
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // 👈 important
                 .headers(headers -> headers
                         .contentSecurityPolicy(csp -> csp.policyDirectives("script-src 'self' 'unsafe-inline' 'unsafe-eval'"))
                 )
@@ -52,13 +52,13 @@ public class SecurityConfig {
         config.setAllowCredentials(true);
 
         config.setAllowedOrigins(List.of(
-                "https://bankapp-frontend.vercel.app",
-                "http://localhost:5173"));
-
+                "https://bankapp-frontend-ten.vercel.app", // 👈 Correct frontend
+                "http://localhost:5173"
+        ));
 
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.addExposedHeader("Set-Cookie");
+        config.addExposedHeader("Authorization"); // 👈 important for JWT
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
