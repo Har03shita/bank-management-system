@@ -51,7 +51,9 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
 
-        config.setAllowedOriginPatterns(List.of("*"));
+        config.setAllowedOrigins(List.of(
+                "https://bankapp-frontend.vercel.app",
+                "http://localhost:5173"));
 
 
         config.addAllowedHeader("*");
