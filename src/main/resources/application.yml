@@ -3,9 +3,9 @@ spring:
     name: bankapp
 
   datasource:
-    url: ${MYSQL_URL}
-    username: ${MYSQLUSER}
-    password: ${MYSQLPASSWORD}
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -20,12 +20,15 @@ jwt:
   secret: jhsy2463yggFTS6IEJDB5629NGFUM39NKjx39dg0h2v5
   expiration: 3600000
 
-# ---------------------------------------------
-# Local database profile (use only for localhost)
-# ---------------------------------------------
+
+# ──────────────────────────────────────────────────────────────
+#
+# ──────────────────────────────────────────────────────────────
+#
 # spring:
 #   datasource:
 #     url: jdbc:mysql://localhost:3306/bankappdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
 #     username: root
 #     password: harshita
 #     driver-class-name: com.mysql.cj.jdbc.Driver
+#
